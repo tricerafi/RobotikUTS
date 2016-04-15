@@ -1,10 +1,5 @@
 # RobotikUTS
 Folder uts robotik
 
-Air jet sudah terpasang
+main sudah berhasil mengikuti tembok di kanan
 
-air jet belum jalan sesuai harapan
-
-masih menggunakan lua
-
-main blom dimodifikasi
