@@ -1,10 +1,7 @@
 # RobotikUTS
 Folder uts robotik
 
-Air jet sudah terpasang
+veloL=simGetObjectHandle("Pioneer_p3dx_leftWheel")
+veloR=simGetObjectHandle("Pioneer_p3dx_rightWheel")
 
-air jet belum jalan sesuai harapan
-
-masih menggunakan lua
-
-main blom dimodifikasi
+script bermasalah di fire
