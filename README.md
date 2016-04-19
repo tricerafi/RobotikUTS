@@ -1,9 +1,6 @@
 # RobotikUTS
 Folder uts robotik
 
-veloL=simGetObjectHandle("Pioneer_p3dx_leftWheel")
-veloR=simGetObjectHandle("Pioneer_p3dx_rightWheel")
+fire udah ke detect dari pyhton
 
-script bermasalah di fire
-
-masih perlu cara agar fire bisa deteksi posisi robot untuk mati
+masih perlu cara agar fire bisa dimatikan
