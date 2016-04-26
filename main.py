@@ -58,9 +58,10 @@ for i in range(1,10000):
 		print 'fire detected'
 	else:
 		error_code, det_state, aux = vrep.simxReadVisionSensor(clientID, usensorV1,vrep.simx_opmode_oneshot_wait)
+		#print det_state, aux[1]
 		if det_state == True:
 			lroute = not (lroute)
-		
+		#print lroute
 		
 		if(lroute):
 			error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor4,vrep.simx_opmode_oneshot_wait)
@@ -148,4 +149,3 @@ for i in range(1,10000):
 		else:
 			#to do right following
 			print 'right following'
-
