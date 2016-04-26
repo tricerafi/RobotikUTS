@@ -50,7 +50,7 @@ for i in range(1,10000):
 	vrep.simxSetJointTargetVelocity(clientID,left_motor,0,vrep.simx_opmode_oneshot_wait)
 	vrep.simxSetJointTargetVelocity(clientID,right_motor,0,vrep.simx_opmode_oneshot_wait)
 	
-	bool lroute = true
+	lroute = True
 	#sensor api
 	error_code, det_state, aux = vrep.simxReadVisionSensor(clientID, usensorV,vrep.simx_opmode_oneshot_wait)
 	print 'Sensor : vision det state: ', det_state
@@ -60,7 +60,7 @@ for i in range(1,10000):
 		error_code, det_state, aux = vrep.simxReadVisionSensor(clientID, usensorV1,vrep.simx_opmode_oneshot_wait)
 		if det_state == True:
 			lroute = not (lroute)
-		end
+		
 		
 		if(lroute):
 			error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor4,vrep.simx_opmode_oneshot_wait)
@@ -147,4 +147,5 @@ for i in range(1,10000):
 					time.sleep(0.5);
 		else:
 			#to do right following
+			print 'right following'
 
