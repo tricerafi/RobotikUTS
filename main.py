@@ -44,13 +44,13 @@ errorCode,usensorV2=vrep.simxGetObjectHandle(clientID,'Vision_sensor2',vrep.simx
 #
 #	vrep.simxSetJointTargetVelocity(clientID,left_motor,2,vrep.simx_opmode_oneshot_wait)
 #	vrep.simxSetJointTargetVelocity(clientID,right_motor,2,vrep.simx_opmode_oneshot_wait)
-
+lroute = True
 for i in range(1,10000):
 
-	vrep.simxSetJointTargetVelocity(clientID,left_motor,0,vrep.simx_opmode_oneshot_wait)
-	vrep.simxSetJointTargetVelocity(clientID,right_motor,0,vrep.simx_opmode_oneshot_wait)
+	vrep.simxSetJointTargetVelocity(clientID,left_motor,4,vrep.simx_opmode_oneshot_wait)
+	vrep.simxSetJointTargetVelocity(clientID,right_motor,4,vrep.simx_opmode_oneshot_wait)
 	
-	lroute = True
+	
 	#sensor api
 	error_code, det_state, aux = vrep.simxReadVisionSensor(clientID, usensorV,vrep.simx_opmode_oneshot_wait)
 	print 'Sensor : vision det state: ', det_state
@@ -58,94 +58,14 @@ for i in range(1,10000):
 		print 'fire detected'
 	else:
 		error_code, det_state, aux = vrep.simxReadVisionSensor(clientID, usensorV1,vrep.simx_opmode_oneshot_wait)
-		#print det_state, aux[1]
+		print det_state, aux[1]
 		if det_state == True:
 			lroute = not (lroute)
-		#print lroute
+		print lroute
 		
 		if(lroute):
 			error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor4,vrep.simx_opmode_oneshot_wait)
-			print 'Sensor : 4 det state: ', det_state,' det point : ', det_point[2]
-			if det_state == True:
-				if det_point[2]<0.3:
-					#Sensor8 #Sensor4 true
-					error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor8,vrep.simx_opmode_oneshot_wait)
-					print 'Sensor : 8 det state: ', det_state,' det point : ', det_point[2]
-					if det_state == True:
-						if det_point[2]<0.3:
-							vrep.simxSetJointTargetVelocity(clientID,left_motor,-2,vrep.simx_opmode_oneshot_wait)
-							vrep.simxSetJointTargetVelocity(clientID,right_motor,2,vrep.simx_opmode_oneshot_wait)
-							time.sleep(0.5);
-						else:
-							vrep.simxSetJointTargetVelocity(clientID,left_motor,-2,vrep.simx_opmode_oneshot_wait)
-							vrep.simxSetJointTargetVelocity(clientID,right_motor,2,vrep.simx_opmode_oneshot_wait)
-							time.sleep(0.5);
-					
-					else:	
-						vrep.simxSetJointTargetVelocity(clientID,left_motor,2,vrep.simx_opmode_oneshot_wait)
-						vrep.simxSetJointTargetVelocity(clientID,right_motor,-1,vrep.simx_opmode_oneshot_wait)
-						time.sleep(0.5);
-				else:
-					#Sensor8
-					error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor8,vrep.simx_opmode_oneshot_wait)
-					print 'Sensor : 8 det state: ', det_state,' det point : ', det_point[2]
-					if det_state == True:
-						if det_point[2]<0.3:
-							#Sensor7
-							error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor7,vrep.simx_opmode_oneshot_wait)
-							print 'Sensor : 7 det state: ', det_state,' det point : ', det_point[2]
-							if det_state == True:
-								if det_point[2]<0.3:
-									vrep.simxSetJointTargetVelocity(clientID,left_motor,-2,vrep.simx_opmode_oneshot_wait)
-									vrep.simxSetJointTargetVelocity(clientID,right_motor,2,vrep.simx_opmode_oneshot_wait)
-									time.sleep(0.5);
-								else:
-									vrep.simxSetJointTargetVelocity(clientID,left_motor,4,vrep.simx_opmode_oneshot_wait)
-									vrep.simxSetJointTargetVelocity(clientID,right_motor,4,vrep.simx_opmode_oneshot_wait)
-									time.sleep(0.5);
-							else:
-								vrep.simxSetJointTargetVelocity(clientID,left_motor,4,vrep.simx_opmode_oneshot_wait)
-								vrep.simxSetJointTargetVelocity(clientID,right_motor,4,vrep.simx_opmode_oneshot_wait)
-								time.sleep(0.5);
-						else:
-							vrep.simxSetJointTargetVelocity(clientID,left_motor,2,vrep.simx_opmode_oneshot_wait)
-							vrep.simxSetJointTargetVelocity(clientID,right_motor,1,vrep.simx_opmode_oneshot_wait)
-							time.sleep(0.5);
-					else:
-						vrep.simxSetJointTargetVelocity(clientID,left_motor,2,vrep.simx_opmode_oneshot_wait)
-						vrep.simxSetJointTargetVelocity(clientID,right_motor,1,vrep.simx_opmode_oneshot_wait)
-						time.sleep(0.5);
-			#Sensor4 false
-			else:	
-				#Sensor8
-				error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor8,vrep.simx_opmode_oneshot_wait)
-				print 'Sensor : 8 det state: ', det_state,' det point : ', det_point[2]
-				if det_state == True:
-					if det_point[2]<0.3:
-						#Sensor7
-						error_code, det_state, det_point, det_handle, det_vec = vrep.simxReadProximitySensor(clientID, usensor7,vrep.simx_opmode_oneshot_wait)
-						print 'Sensor : 7 det state: ', det_state,' det point : ', det_point[2]
-						if det_state == True:
-							if det_point[2]<0.3:
-								vrep.simxSetJointTargetVelocity(clientID,left_motor,-2,vrep.simx_opmode_oneshot_wait)
-								vrep.simxSetJointTargetVelocity(clientID,right_motor,2,vrep.simx_opmode_oneshot_wait)
-								time.sleep(0.5);
-							else:
-								vrep.simxSetJointTargetVelocity(clientID,left_motor,4,vrep.simx_opmode_oneshot_wait)
-								vrep.simxSetJointTargetVelocity(clientID,right_motor,4,vrep.simx_opmode_oneshot_wait)
-								time.sleep(0.5);
-						else:
-							vrep.simxSetJointTargetVelocity(clientID,left_motor,4,vrep.simx_opmode_oneshot_wait)
-							vrep.simxSetJointTargetVelocity(clientID,right_motor,4,vrep.simx_opmode_oneshot_wait)
-							time.sleep(0.5);
-					else:
-						vrep.simxSetJointTargetVelocity(clientID,left_motor,2,vrep.simx_opmode_oneshot_wait)
-						vrep.simxSetJointTargetVelocity(clientID,right_motor,1,vrep.simx_opmode_oneshot_wait)
-						time.sleep(0.5);
-				else:	
-					vrep.simxSetJointTargetVelocity(clientID,left_motor,2,vrep.simx_opmode_oneshot_wait)
-					vrep.simxSetJointTargetVelocity(clientID,right_motor,-2,vrep.simx_opmode_oneshot_wait)
-					time.sleep(0.5);
+			print 'left following'
 		else:
 			#to do right following
 			print 'right following'
