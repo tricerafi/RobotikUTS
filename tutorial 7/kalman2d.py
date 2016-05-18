@@ -34,7 +34,7 @@ def kalman_prediction_2d (iteration, mu_prev, sigma_prev, ut, zt) :
    sigma_t = (I-Kt*Ct)*sigma_bar   
    
    zt_plot = np.array([[zt[0,0]],[zt[1,0]],[0],[0]])
-   plot_update(iteration, mu_prev, sigma_prev, zt_plot, meas_noise, mu_t, sigma_t)
+   plot_update(iteration, mu_prev, sigma_prev, zt_plot, Ex, mu_t, sigma_t)
    
    
    return [mu_t,sigma_t]
